@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>VisualWget Docs : License</title>
+    <meta name="description" content="" />
+
+    <link
+      href="http://fonts.googleapis.com/css?family=Lato:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/docs/css/syntax.css" />
+    <link rel="stylesheet" href="/docs/css/main.css" />
+  </head>
+  <body>
+    <div class="header">
+      VisualWget Docs
+    </div>
+
+    <div class="wrapper">
+      <div class="navigation">
+        <ul class="list">
+          <li><a href="/docs/">Home</a></li>
+
+          <li class="list_spacer">Development</li>
+
+          <li class="list_item" data-order="1">
+            <a href="/docs/dev/the-team.html">The Team</a>
+          </li>
+
+          <li class="list_item" data-order="1">
+            <a href="/docs/dev/license.html">License</a>
+          </li>
+
+          <li class="list_item" data-order="1">
+            <a href="/docs/dev/contributing.html">Contributing</a>
+          </li>
+
+          <li class="list_item" data-order="1">
+            <a href="/docs/dev/changelog.html">Changelog</a>
+          </li>
+
+          <!-- List additional links. It is recommended to add a divider
+    e.g. <li class=divider></li> first to break up the content. -->
+        </ul>
+      </div>
+
+      <div class="content">
+        <div class="page-header">
+          <h1>License</h1>
+        </div>
+
+        <p>
+          <strong
+            >VisualWget Copyright (C) 2010-2014
+            <a href="/docs/dev/the-team.html">VisualWget Team</a></strong
+          >
+        </p>
+        <div class="highlight">
+          <pre><code class="text language-text" data-lang="text">VisualWget is distributed under the terms of the Microsoft Public License (MS-PL) below.
+
+This license governs use of the accompanying software. If you use the software, you accept
+this license. If you do not accept the license, do not use the software.
+
+1) Definitions
+- The terms &quot;reproduce,&quot; &quot;reproduction,&quot; &quot;derivative works,&quot; and &quot;distribution&quot; have the
+same meaning here as under U.S. copyright law.
+- A &quot;contribution&quot; is the original software, or any additions or changes to the software.
+- A &quot;contributor&quot; is any person that distributes its contribution under this license.
+- &quot;Licensed patents&quot; are a contributor&#39;s patent claims that read directly on its
+contribution.
+
+2) Grant of Rights
+- Copyright Grant- Subject to the terms of this license, including the license conditions
+and limitations in section 3, each contributor grants you a non-exclusive, worldwide,
+royalty-free copyright license to reproduce its contribution, prepare derivative works of
+its contribution, and distribute its contribution or any derivative works that you create.
+- Patent Grant- Subject to the terms of this license, including the license conditions and
+limitations in section 3, each contributor grants you a non-exclusive, worldwide,
+royalty-free license under its licensed patents to make, have made, use, sell, offer for
+sale, import, and/or otherwise dispose of its contribution in the software or derivative
+works of the contribution in the software.
+
+3) Conditions and Limitations
+- No Trademark License- This license does not grant you rights to use any contributors&#39;
+name, logo, or trademarks.
+- If you bring a patent claim against any contributor over patents that you claim are
+infringed by the software, your patent license from such contributor to the software ends
+automatically.
+- If you distribute any portion of the software, you must retain all copyright, patent,
+trademark, and attribution notices that are present in the software.
+- If you distribute any portion of the software in source code form, you may do so only
+under this license by including a complete copy of this license with your distribution.
+If you distribute any portion of the software in compiled or object code form, you may
+only do so under a license that complies with this license.
+- The software is licensed &quot;as-is.&quot; You bear the risk of using it. The contributors give
+no express warranties, guarantees or conditions. You may have additional consumer rights
+under your local laws which this license cannot change. To the extent permitted under
+your local laws, the contributors exclude the implied warranties of merchantability,
+fitness for a particular purpose and non-infringement.
+</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function orderNav() {
+        var list,
+          section,
+          header,
+          sections = [],
+          lists = {},
+          headers = {};
+
+        var navUl = document.querySelectorAll("#navigation ul")[0],
+          navLis = document.querySelectorAll("#navigation ul li");
+
+        if (!navUl) return;
+
+        for (var i = 0; i < navLis.length; i++) {
+          var order,
+            li = navLis[i];
+
+          if (li.classList.contains("nav-header")) {
+            section = li.textContent || li.innerText;
+            sections.push(section);
+            headers[section] = li;
+            continue;
+          }
+
+          if (!lists[section]) {
+            lists[section] = [];
+          }
+
+          order = parseFloat(li.getAttribute("data-order"));
+          lists[section].push([order, li]);
+        }
+
+        for (var i = 0; i < sections.length; i++) {
+          section = sections[i];
+          list = lists[section].sort(function (a, b) {
+            return a[0] - b[0];
+          });
+
+          if ((header = headers[section])) {
+            navUl.appendChild(header);
+          }
+          for (var j = 0; j < list.length; j++) {
+            navUl.appendChild(list[j][1]);
+          }
+        }
+      }
+
+      if (document.querySelectorAll) orderNav();
+    </script>
+  </body>
+</html>
